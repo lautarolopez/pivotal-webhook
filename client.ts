@@ -20,15 +20,16 @@ const sendMessage = async ({
   const body: Body = await request.body();
   const data = await body.value;
   const whurl: string | undefined = Deno.env.get("DISCORD_WEBHOOK");
-  return data;
-  // const msg: DiscordMessage = ;
-  // if (whurl) {
-  //   fetch(whurl, {
-  //     method: "POST",
-  //     headers: { "content-type": "application/json" },
-  //     body: JSON.stringify(msg),
-  //   });
-  // }
+   const msg: DiscordMessage = ;
+   if (whurl) {
+     fetch(whurl, {
+       method: "POST",
+       headers: { "content-type": "application/json" },
+       body: JSON.stringify({
+         content: JSON.stringify(data)
+       }),
+     });
+  }
 };
 
 router.post("/pivotal", sendMessage);
