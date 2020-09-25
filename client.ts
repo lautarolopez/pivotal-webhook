@@ -7,7 +7,7 @@ import { PivotalTrackerActivity } from "./types/pivotal.ts";
 import { formatMessage } from "./message.ts";
 import { parse } from "https://deno.land/std/flags/mod.ts";
 import { load } from "https://deno.land/x/denv@2.0.0/mod.ts";
-await load("./.env");
+await load(".env");
 
 const app = new Application();
 const router = new Router();
