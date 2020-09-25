@@ -6,9 +6,6 @@ import { DiscordMessage } from "./types/discord.ts";
 import { PivotalTrackerActivity } from "./types/pivotal.ts";
 import { formatMessage } from "./message.ts";
 import { parse } from "https://deno.land/std/flags/mod.ts";
-import { load } from "https://deno.land/x/tiny_env/mod.ts";
-
-load();
 
 const app = new Application();
 const router = new Router();
