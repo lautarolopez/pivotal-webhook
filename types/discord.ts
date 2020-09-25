@@ -18,5 +18,16 @@ export type DiscordMessage = {
   username?: string;
   avatar_url?: string;
   tts?: boolean;
-  embeds?: [DiscordEmbed];
+  embeds?: [
+    DiscordEmbed?,
+    DiscordEmbed?,
+    DiscordEmbed?,
+    DiscordEmbed?,
+    DiscordEmbed?,
+    DiscordEmbed?,
+    DiscordEmbed?,
+    DiscordEmbed?,
+    DiscordEmbed?,
+    DiscordEmbed?
+  ];
 };

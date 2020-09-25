@@ -1,2 +1,6 @@
 .env
 node_modules
+/types/*
+message.ts
+client.ts
+message.ts
