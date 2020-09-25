@@ -5,10 +5,9 @@ import { oakCors } from "https://deno.land/x/cors/mod.ts";
 import { DiscordMessage } from "./types/discord.ts";
 import { PivotalTrackerActivity } from "./types/pivotal.ts";
 import { formatMessage } from "./message.ts";
-import { load } from "https://deno.land/x/tiny_env/mod.ts";
 import { parse } from "https://deno.land/std/flags/mod.ts";
-
-load();
+import { load } from "https://deno.land/x/denv@2.0.0/mod.ts";
+await load("./.env");
 
 const app = new Application();
 const router = new Router();
