@@ -6,9 +6,9 @@ import { DiscordMessage } from "./types/discord.ts";
 import { PivotalTrackerActivity } from "./types/pivotal.ts";
 import { formatMessage } from "./message.ts";
 import { parse } from "https://deno.land/std/flags/mod.ts";
-import { load } from "https://deno.land/x/denv@2.0.0/mod.ts";
+import { load } from "https://deno.land/x/tiny_env/mod.ts";
 
-await load("./.env");
+load();
 
 const app = new Application();
 const router = new Router();
@@ -26,7 +26,6 @@ const sendMessage = async ({
   const body: Body = await request.body();
   const data: PivotalTrackerActivity = await body.value;
   const whurl: string | undefined = Deno.env.get("DISCORD_WEBHOOK");
-  console.log(Deno.env.get("DISCORD_WEBHOOK"));
   const msg: DiscordMessage | null = formatMessage(data);
   if (msg !== null) {
     if (whurl) {
