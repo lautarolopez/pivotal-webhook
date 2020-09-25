@@ -1,15 +1,15 @@
+export type PrimaryResource = {
+  story_type?: string;
+  name?: string;
+  url?: string;
+  id?: number;
+  kind?: string;
+};
+
 export type PivotalTrackerActivity = {
   occurred_at?: number;
   highlight?: string;
-  primary_resources?: [
-    {
-      story_type?: string;
-      name?: string;
-      url?: string;
-      id?: number;
-      kind?: string;
-    }
-  ];
+  primary_resources?: [PrimaryResource];
   changes?: [
     {
       story_type?: string;

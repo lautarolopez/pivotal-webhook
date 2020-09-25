@@ -3,12 +3,18 @@ import { Router } from "https://deno.land/x/oak/mod.ts";
 import { Response, Request, Body } from "https://deno.land/x/oak/mod.ts";
 import { oakCors } from "https://deno.land/x/cors/mod.ts";
 import { DiscordMessage } from "./types/discord.ts";
+import { PivotalTrackerActivity } from "./types/pivotal.ts";
+import { formatMessage } from "./message.ts";
 import { load } from "https://deno.land/x/tiny_env/mod.ts";
+import { parse } from "https://deno.land/std/flags/mod.ts";
 
 await load();
 
 const app = new Application();
 const router = new Router();
+const { args } = Deno;
+const DEFAULT_PORT = 8000;
+const argPort = parse(args).port;
 
 const sendMessage = async ({
   request,
@@ -18,17 +24,21 @@ const sendMessage = async ({
   response: Response;
 }) => {
   const body: Body = await request.body();
-  const data = await body.value;
+  const data: PivotalTrackerActivity = await body.value;
   const whurl: string | undefined = Deno.env.get("DISCORD_WEBHOOK");
-   const msg: DiscordMessage = ;
-   if (whurl) {
-     fetch(whurl, {
-       method: "POST",
-       headers: { "content-type": "application/json" },
-       body: JSON.stringify({
-         content: JSON.stringify(data)
-       }),
-     });
+  const msg: DiscordMessage | null = formatMessage(data);
+  if (msg !== null) {
+    if (whurl) {
+      fetch(whurl + "?wait=true", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(msg),
+      }).then((algo) => algo.json().then(console.log));
+    }
+    response.body = {
+      status: msg !== null ? 200 : 400,
+      body: msg !== null ? msg : "Internal server error",
+    };
   }
 };
 
@@ -38,4 +48,4 @@ app.use(router.routes());
 app.use(router.allowedMethods());
 app.use(oakCors());
 
-await app.listen({ port: 3000 });
+await app.listen({ port: argPort ? Number(argPort) : DEFAULT_PORT });
