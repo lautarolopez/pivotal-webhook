@@ -16,6 +16,6 @@ This is an intermediate app that uses Pivotal Tracker webhooks to notify the pro
 3. Go to the Discord channel settings > integrations > Webhooks > New Webhook
 3. Copy the Webhook URL
 4. Create a new env variable ***DISCORD_WEBHOOK*** in your deploy enviroment with the URL
-5. Now you can go to your project in Pivotal Tracker, and paste *https://youraplication.herokuapp.com*/***pivotal*** into more > webhooks > Add new webhook
+5. Now you can go to your project in Pivotal Tracker, and paste _https://youraplication.herokuapp.com_/***pivotal*** into more > webhooks > Add new webhook
 
 And there you go! Every time you make a move in your pivotal project the app will send you a notification to Discord.
