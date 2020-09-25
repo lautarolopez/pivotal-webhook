@@ -8,7 +8,7 @@ import { formatMessage } from "./message.ts";
 import { load } from "https://deno.land/x/tiny_env/mod.ts";
 import { parse } from "https://deno.land/std/flags/mod.ts";
 
-await load();
+load();
 
 const app = new Application();
 const router = new Router();
