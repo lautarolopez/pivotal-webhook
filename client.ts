@@ -26,6 +26,7 @@ const sendMessage = async ({
   const body: Body = await request.body();
   const data: PivotalTrackerActivity = await body.value;
   const whurl: string | undefined = Deno.env.get("DISCORD_WEBHOOK");
+  console.log(Deno.env.get("DISCORD_WEBHOOK"));
   const msg: DiscordMessage | null = formatMessage(data);
   if (msg !== null) {
     if (whurl) {
